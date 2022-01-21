@@ -1,0 +1,131 @@
+@import '../../../styles/colors.sass'
+
+.categories
+    position: relative
+    padding: 5rem 0
+    background-position: center
+    background-size: cover
+    background-color: #e2e3e5
+    color: #fff
+    z-index: 0
+
+    // &__hero-shadow
+    //     position: absolute
+    //     top: 0
+    //     left: 0
+    //     width: 100%
+    //     height: 100%
+    //     background-color: rgba(0, 0, 0, .4)
+    //     z-index: -2
+
+    &__title
+        margin-bottom: 6rem
+        font-size: 3rem
+        font-weight: 600
+        color: $dark-navy-color
+
+        i
+            padding-right: 1.2rem
+            font-size: 3rem
+            color: $gold-color
+
+    &__row
+        display: flex
+        justify-content: center
+        flex-wrap: wrap
+
+    &__hero-category
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-color: rgba(0, 0, 0, .8)
+        transition: background-color .3s
+        z-index: -1
+
+    &__category
+        position: relative
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 94%
+        height: 18rem
+        margin-bottom: 3rem
+        color: #fff
+        text-decoration: none
+        background-position: center
+        background-size: cover
+        transition: border-width .3s
+        animation: fade-in 1s forwards
+        z-index: 0
+
+        &::before
+            position: absolute
+            top: 0
+            left: 0
+            display: block
+            width: 0.8rem
+            height: 100%
+            background-color: $gold-color
+            content: ''
+            transition: width .3s
+
+        &:hover
+
+            &::before
+                width: 1.4rem
+
+            .categories__hero-category
+                background-color: rgba(0, 0, 0, .72)
+
+            .categories__category-title
+                transform: translateX(0.6rem)
+                
+    &__category-title
+        font-size: 2.6rem
+        font-weight: normal
+        transition: transform .3s
+
+@media(min-width: 768px)
+    .categories
+        padding: 6rem 0
+
+        &__row
+            justify-content: space-between
+
+        &__category
+            width: 48%
+
+        &__title
+            font-size: 3.2rem
+
+
+@media(min-width: 992px)
+    .categories
+        padding: 8rem 0
+
+        &__title
+            margin-bottom: 7rem
+            font-size: 3.6rem
+
+        &__category
+            height: 20rem
+            
+            &:nth-child(1)
+                margin-bottom: 4rem
+
+        &__category-title
+            font-size: 2.8rem
+
+        &__category-btn
+            width: 30%
+            font-size: 1.8rem
+                
+@keyframes fade-in
+    0%
+        opacity: 0
+
+    100%
+        opacity: 1
