@@ -1,36 +1,11 @@
 import './Footer.sass'
-import FooterLink from './FooterLink.js/FooterLink';
+import SooterLink from '../SocialLink/SocialLink';
 
-const Footer = () => {
+const Footer = (props) => {
 
-    const links = [
-        {
-            key: 1,
-            addres: 'https://www.facebook.com/drinkitcompl',
-            title: 'DrinkIt na Facebooku',
-            iconName: "fab fa-facebook-f",
-            name: 'facebook.com/drinkit.com.pl'
-        },
-        {
-            key: 2,
-            addres: 'https://www.instagram.com/drinkit.com.pl',
-            title: 'DrinkIt na Instagramie',
-            iconName: "fab fa-instagram",
-            name: 'instagram.com/drinkit.com.pl'
-        },
-        {
-            key: 3,
-            addres: 'https://twitter.com/drinkitcompl',
-            title: 'DrinkIt na Twitterze',
-            iconName: "fab fa-twitter",
-            name: 'twitter.com/drinkitcompl'
-        }
-    ]
-
-    
+   
     const year = new Date().getFullYear();
-
-    const footerLinks = links.map(link => <FooterLink key={link.key} {...link}/>)
+    const footerLinks = props.links.map(link => <SooterLink key={link.key} onlyIcon={false} className="footer__link" {...link}/>)
 
     return (
         <footer className="footer">

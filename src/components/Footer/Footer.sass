@@ -61,6 +61,24 @@
         p
             padding: .5rem 0
 
+    &__link
+        padding: 1.4rem 0
+        font-size: 1.5rem
+        color: $light-font-color
+        text-decoration: none
+        transition: transform .3s
+
+        i
+            padding-right: .7rem
+            font-size: 1.6rem
+            transition: color.3s
+
+        &:hover
+            transform: translateX(1rem)
+
+            i
+                color: $gold-color
+
 
 @media(min-width: 768px)
     .footer
@@ -76,6 +94,9 @@
 
         &__text
             margin-top: 6rem
+
+        &__link
+            padding: 1.5rem 0
                 
 @media(min-width: 900px)
     .footer
@@ -91,6 +112,10 @@
         &__up-btn
             p
                 padding-top: 1.4rem
+
+
+
+    
 
             
     

@@ -1,0 +1,120 @@
+@import '../../styles/colors.sass'
+
+.nav 
+    position: fixed
+    top: 0
+    width: 100%
+    height: 8rem
+    color: $light-font-color
+    background-color: $dark-navy-color
+    z-index: 1000
+
+    &__row
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 90%
+        max-width: 130rem
+        height: 100%
+        margin: 0 auto
+
+    &__logo
+        display: flex
+        align-items: center
+        
+        h3
+            font-size: 2.2rem
+            font-weight: 500
+            color: #fff
+
+    &__burger
+        position: relative
+        margin-left: auto
+        z-index: 10
+
+        .hamburger
+            padding: 0
+            color: $light-font-color
+            
+            .hamburger-inner, .hamburger-inner::after, .hamburger-inner::before
+                width: 3.4rem
+                background-color: $light-font-color
+    &__items
+        position: absolute
+        top: 7.9rem
+        left: -110%
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 100%
+        background-color: $dark-navy-color
+        transition: left .4s
+        
+        &--open
+            left: 0
+            
+    &__item
+        display: flex
+        padding: 1.4rem 2rem
+        font-size: 2rem
+        font-weight: 500
+        color: $light-font-color
+        text-decoration: none
+        transition: color .3s
+        
+        &:hover
+            color: $gold-color
+
+@media(min-width: 992px)
+    .nav
+        &__items
+            position: static
+            flex-direction: row
+            width: auto
+            height: 100%
+            
+        &__item
+            align-items: center
+            height: 100%
+            padding: 0 2rem
+
+            &:first-child
+                padding-left: 0
+
+        &__logo
+            order: 3
+
+        &__dropdown-links
+            position: absolute
+            top: 7.8rem
+            left: 0
+            display: flex
+            flex-direction: column
+            width: 20rem
+            visibility: hidden
+            opacity: 0
+            background-color: $dark-navy-color
+            transition: opacity .4s
+
+            .nav__item
+                padding: 1rem 2rem
+
+        &__dropdown-item
+            position: relative
+            cursor: pointer
+
+            i
+                padding-left: 1rem
+            
+            &:hover
+                
+                .nav__dropdown-links
+                    visibility: visible
+                    opacity: 1
+
+
+                
+                
+
+            
+

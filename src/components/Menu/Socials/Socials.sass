@@ -1,0 +1,30 @@
+@import '../../../styles/colors.sass'
+
+.socials
+    display: flex
+    justify-content: space-around
+    width: 90%
+    margin-top: 2.4rem
+    padding: 1rem 0
+    border-top: 1px solid #333333
+
+    &__link
+        padding: 1rem
+        font-size: 2.2rem
+        color: $light-font-color
+        text-decoration: none
+        
+        i
+            font-size: 2.2rem
+            transition: color .3s
+
+        &:hover
+            i
+                color: $gold-color
+        
+@media(min-width: 992px)
+    .socials
+        padding: 0
+        margin-top: 0
+        border: none
+        margin-right: 2rem

@@ -1,18 +1,16 @@
-import './FooterLink.sass'
-
-const FooterLink = props => {
+const SocialLink = props => {
     return (
         <a 
-            className="footer__link" 
+            className={props.className}
             target="_blank" 
             rel="noreferrer"
             href={props.addres}
             title={props.title}
             aria-label={props.title}>
                 <i className={props.iconName}></i>
-                {props.name}
+                {(!props.onlyIcon) && props.name}
         </a>
     );
 }
  
-export default FooterLink;
+export default SocialLink;
