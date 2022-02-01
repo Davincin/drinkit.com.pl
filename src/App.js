@@ -1,10 +1,13 @@
 import './App.sass';
 import Menu from './components/Menu/Menu';
-import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Main from './components/Main/Main';
-import Categories from './components/Main/Categories/Categories';
-
+import DrinksWhisky from './Pages/DrinksWhisky';
+import DrinksGin from './Pages/DrinksGin';
+import DrinksWodka from './Pages/DrinksWodka';
+import Home from './Pages/Home';
+import DrinksOther from './Pages/DrinksOther'
+import DrinkPage from './Pages/DrinkPage'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   
@@ -31,22 +34,22 @@ const App = () => {
         name: 'twitter.com/drinkitcompl'
     }
 ]
-
-
   return (
-    <div className="App">
-      <Menu links={links}/>
-      <Header />
-      <div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
-      
-      {/* <Main /> */}
-      <Main>
-        <Categories />
-      </Main>
-      <Footer links={links}/>
-    </div>
+    <Router>
+      <div className="App">
+        <Menu links={links}/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/drinkizwhisky" element={<DrinksWhisky />}/>
+          <Route path="/drinkizginem" element={<DrinksGin />}/>
+          <Route path="/drinkizwodka" element={<DrinksWodka />}/>
+          <Route path="/innedrinki" element={<DrinksOther />}/>
+        </Routes>
+        
+        <Footer links={links}/>
+      </div>
+    </Router>
   );
 }
-
 
 export default App;

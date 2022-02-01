@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import '../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss'
 import './Menu.sass'
 import Socials from './Socials/Socials';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 const Menu = (props) => {
@@ -9,6 +10,8 @@ const Menu = (props) => {
     const [windowWidth, setWindowWidth] = useState()
     const burger = useRef(null);
     const menuItems = useRef(null);
+    const navigate = useNavigate();
+    console.log(navigate);
 
     useEffect(() => {
         setWindowWidth(window.innerWidth)
@@ -21,17 +24,17 @@ const Menu = (props) => {
 
     const handleBurgerClick = () => {
         burger.current.classList.toggle("is-active");
-        menuItems.current.classList.toggle("nav__items--open")
+        menuItems.current.classList.toggle("nav__items--open");
     }
 
     
 
     const dropdownLinks = (
         <>
-            <a href="#" className="nav__item">Drinki z whisky</a>
-            <a href="#" className="nav__item">Drinki z ginem</a>
-            <a href="#" className="nav__item">Drinki z wódką</a>
-            <a href="#" className="nav__item">Inne drinki</a>
+            <NavLink to="/drinkizwhisky" className="nav__item">Drinki z whisky</NavLink>
+            <NavLink to="/drinkizginem" className="nav__item">Drinki z ginem</NavLink>
+            <NavLink to="/drinkizwodka" className="nav__item">Drinki z wódką</NavLink>
+            <NavLink to="/innedrinki" className="nav__item">Inne drinki</NavLink>
         </>
     )
     
@@ -51,8 +54,8 @@ const Menu = (props) => {
                         </button>
                     </div>
                 )}
-                <div className="nav__items" ref={menuItems}>
-                    <a href="#" className="nav__item" onClick={handleBurgerClick}>Home</a>
+                <div className="nav__items" onClick={handleBurgerClick} ref={menuItems}>
+                    <NavLink to="/" className="nav__item">Home</NavLink>
                     {windowWidth >= 992 ? (
                         <div className="nav__item nav__dropdown-item">
                             Drinki <i className="fas fa-angle-down"></i>

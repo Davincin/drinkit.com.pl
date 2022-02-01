@@ -1,0 +1,32 @@
+@import '../../styles/colors.sass'
+
+.drinks
+    padding: 6rem 0
+    background-color: #9c9c9c
+
+    &__title
+        font-size: 3rem
+        margin-bottom: 4rem
+        font-weight: 600
+
+        i
+            padding-right: 1.2rem
+            font-size: 3rem
+            color: $gold-color
+
+    &__row
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-between
+        width: 100%
+
+@media(min-width: 668px)
+    .drinks
+        padding: 7rem 0
+
+@media(min-width: 992px)
+    .drinks
+        padding: 8rem 0
+
+        &__row
+            justify-content: space-around

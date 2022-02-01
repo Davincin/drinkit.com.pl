@@ -14,6 +14,8 @@
     color: #fff
     z-index: 0
 
+    
+
     &__hero-shadow
         position: absolute
         top: 0
@@ -62,6 +64,25 @@
 
             i
                 color: #fff
+
+    &--whisky, &--gin, &--wodka, &--other
+        height: 30rem
+        background-position: center
+        
+
+        .header__title
+            font-size: 4.2rem
+            margin-top: 7rem
+
+    &--whisky
+        background-image: url('../../assets/images/whisky_480.jpg')
+        
+
+    &--gin
+        background-image: url('../../assets/images/gin_480.jpg')  
+
+    &--wodka, &--other
+        background-image: url('../../assets/images/wodka_480.jpg')
 
 @media(min-width: 768px)
     .header

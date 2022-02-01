@@ -1,54 +1,55 @@
 import Category from "./Category/Category";
 import './Categories.sass'
 import {useEffect, useState} from 'react'
-import whiskyImage from '../../../assets/images/whisky_480.jpg'
-import ginImage from '../../../assets/images/gin_480.jpg'
-import wodkaImage from '../../../assets/images/wodka_480.jpg'
-
-
+import whiskyImage from '../../assets/images/whisky_480.jpg'
+import ginImage from '../../assets/images/gin_480.jpg'
+import wodkaImage from '../../assets/images/wodka_480.jpg'
 
 const $categories = [
     {
         id: 1,
         name: 'Drinki z whisky',
-        href: '#',
+        URL: 'drinkizwhisky',
         backgroundImage: whiskyImage
     },
     {
         id: 2,
         name: 'Drinki z ginem',
-        href: '#',
+        URL: 'drinkizginem',
         backgroundImage: ginImage
     },
     {
         id: 3,
         name: 'Drinki z wódką',
-        href: '#',
+        URL: 'drinkizwodka',
         backgroundImage: wodkaImage
     },
     {
         id: 4,
         name: 'Inne drinki',
-        href: '#',
+        URL: 'innedrinki',
         backgroundImage: wodkaImage
     }
 ]
 
-const Categories = (props) => {
+const Categories = props => {
     
+    const {activeCategory} = props;
     
-    
-    const [categories, setCategories] = useState([])
+    const [extraClass, setExtraClass] = useState("");
+    const [categories, setCategories] = useState([]);
     
     useEffect(() => {
-            setCategories($categories);
+
+        setCategories($categories);
+        (activeCategory && setExtraClass("categories__category--small"));
+
     }, [])
 
-    const categoriesLinks = categories.map(item => <Category key={item.id} {...item} />)
+    const categoriesLinks = categories.filter(el => (el.URL !== activeCategory)).map(el => <Category key={el.id} {...el} extraClass={extraClass} />)
     
     return (
         <section className="categories">
-            <div className="categories__hero-shadow"></div>
             <div className="container">
                 <h2 className="categories__title"><i className="fas fa-list"></i>Kategorie</h2>
                 <div className="categories__row">
