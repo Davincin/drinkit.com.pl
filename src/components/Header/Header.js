@@ -1,4 +1,5 @@
 import './Header.sass'
+import { Link } from 'react-router-dom';
 
 const Header = props => {
     
@@ -16,7 +17,7 @@ const Header = props => {
             <div className="header__row container">
                 <h1 className="header__title">{props.title ? props.title : homeTitle}</h1>
                 {(!withoutSubtitle) && <h4 className="header__subtitle">Koktajle, impreza, smak.</h4>}
-                {(!withoutButton) && <a href="#" className="header__btn" title="Sprawdź nowości">Sprawdź nowości <i className="fas fa-angle-down"></i></a>}
+                {(!withoutButton) && <a href="#main" className="header__btn" title="Sprawdź nowości">Sprawdź nowości <i className="fas fa-angle-down"></i></a>}
             </div>
         </header>
     );

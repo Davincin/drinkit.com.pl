@@ -21,36 +21,26 @@ const Drink = props => {
     
 
     return (
-        <article className={`drink ${(shortVersion) && `drink--short-version`}`}>
+        <article className="drink">
             <div className="container">
-                
                 <div className="drink__row">
                     <img src={foto} alt="#" className="drink__img" />
                     <div className="drink__info">
                         <h2 className="drink__title">{drinkName}</h2>
-                        {(!shortVersion) ? 
-                            (
-                                <>
-                                    <ul className="drink__ingredients">
-                                    <h4 className="drink__ingredients-title">Składniki:</h4>
-                                    {ingredients}
-                                    </ul>
-                                    <ul className="drink__preparation">
-                                        <h4 className="drink__preparation-title">Sposób przygotowania:</h4>
-                                        <li>Wszystkie składniki wstrząsamy w shakerze z lodem, następnie przelewamy do kieliszka.</li>
-                                    </ul>
-                                    <div className="drink__footer">
-                                        <Link to={`/${drink.drinkCategoryURL}`} className="drink__category-link">{drink.drinkCategory}</Link>
-                                        <p className="drink__date">{drink.drinkDate}</p>
-                                    </div>
-                                </>
-                            )
-                            :
-                            <a href="#" className="drink__link">Sprawdź</a>
-                        }
+                        <ul className="drink__ingredients">
+                            <h4 className="drink__ingredients-title">Składniki:</h4>
+                            {ingredients}
+                        </ul>
+                        <ul className="drink__preparation">
+                            <h4 className="drink__preparation-title">Sposób przygotowania:</h4>
+                            <li>Wszystkie składniki wstrząsamy w shakerze z lodem, następnie przelewamy do kieliszka.</li>
+                        </ul>
+                        <div className="drink__footer">
+                            <Link to={`/${drink.drinkCategoryURL}`} className="drink__category-link">{drink.drinkCategory}</Link>
+                            <p className="drink__date">{drink.drinkDate}</p>
+                        </div>
                     </div>
                 </div>
-                
             </div>
         </article>
     );

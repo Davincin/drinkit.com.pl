@@ -7,7 +7,10 @@ import DrinksWodka from './Pages/DrinksWodka';
 import Home from './Pages/Home';
 import DrinksOther from './Pages/DrinksOther'
 import DrinkPage from './Pages/DrinkPage'
+import OfferPage from './Pages/OfferPage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+
 
 const App = () => {
   
@@ -32,8 +35,9 @@ const App = () => {
         title: 'DrinkIt na Twitterze',
         iconName: "fab fa-twitter",
         name: 'twitter.com/drinkitcompl'
-    }
-]
+      }
+    ]
+    
   return (
     <Router>
       <div className="App">
@@ -44,8 +48,9 @@ const App = () => {
           <Route path="/drinkizginem" element={<DrinksGin />}/>
           <Route path="/drinkizwodka" element={<DrinksWodka />}/>
           <Route path="/innedrinki" element={<DrinksOther />}/>
+          <Route path="/drink/:drinkname" element={<DrinkPage />}/>
+          <Route path="/oferta" element={<OfferPage />}/>
         </Routes>
-        
         <Footer links={links}/>
       </div>
     </Router>

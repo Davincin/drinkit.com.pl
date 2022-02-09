@@ -1,0 +1,47 @@
+@import '../../../styles/colors.sass'
+    
+.drink-link
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+    margin-bottom: 3rem
+    background-color: $dark-navy-color
+    text-decoration: none
+    animation: fade-in 1s forwards
+
+    &__img
+        width: 100%
+        height: 26rem
+        object-fit: cover
+
+    &__title
+        padding: 3rem 0
+        font-size: 3rem
+        text-decoration: none
+        color: $light-font-color
+        transition: color .3s
+
+    &:hover
+        .drink-link__title
+            color: $gold-color
+
+
+
+
+@media(min-width: 668px)
+    .drink-link
+        width: 48%
+
+
+@media(min-width: 992px)
+    .drink-link
+        width: 30%
+        margin-bottom: 4rem
+
+@keyframes fade-in
+    0%
+        opacity: 0
+
+    100%
+        opacity: 1

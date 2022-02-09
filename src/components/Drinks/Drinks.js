@@ -1,4 +1,4 @@
-import Drink from "./Drink/Drink";
+import DrinkLink from "./DrinkLink/DrinkLink";
 import './Drinks.sass'
 
 const drinksData = [
@@ -72,7 +72,7 @@ const drinksData = [
 
 const Drinks = props => {
 
-    const drinksToShow = drinksData.map(drink => <Drink key={drink.drinkId} shortVersion {...drink}/>)
+    const drinksToShow = drinksData.map(drink => <DrinkLink key={drink.drinkId} shortVersion {...drink}/>)
 
     return (
         <section className="drinks">
