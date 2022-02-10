@@ -95,7 +95,7 @@ const Menu = props => {
                         </div>
                     ) : dropdownLinks}
                     <MyNavLink to="/oferta" className="nav__item">Oferta</MyNavLink>
-                    <NavLink to="/kontakt" className="nav__item">Kontakt</NavLink>
+                    <MyNavLink to="/kontakt" className="nav__item">Kontakt</MyNavLink>
                     {!isDesktop && <Socials links={props.links}/>}
                 </div>
             </div>
