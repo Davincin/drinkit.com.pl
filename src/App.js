@@ -8,9 +8,9 @@ import Home from './Pages/Home';
 import DrinksOther from './Pages/DrinksOther'
 import DrinkPage from './Pages/DrinkPage'
 import OfferPage from './Pages/OfferPage'
+import ContactPage from './Pages/ContactPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NotFoundPage from './Pages/NotFoundPage';
-
 
 
 const App = () => {
@@ -38,7 +38,7 @@ const App = () => {
         name: 'twitter.com/drinkitcompl'
       }
     ]
-    
+  
   return (
     <Router>
       <div className="App">
@@ -51,6 +51,7 @@ const App = () => {
           <Route path="/innedrinki" element={<DrinksOther />}/>
           <Route path="/drink/:drinkname" element={<DrinkPage />}/>
           <Route path="/oferta" element={<OfferPage />}/>
+          <Route path="/kontakt" element={<ContactPage />}/>
           <Route path="*" element={<NotFoundPage />}/>
         </Routes>
         <Footer links={links}/>
@@ -60,3 +61,4 @@ const App = () => {
 }
 
 export default App;
+
