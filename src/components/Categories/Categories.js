@@ -1,48 +1,49 @@
 import Category from "./Category/Category";
 import './Categories.sass'
 import {useEffect, useState} from 'react'
-import whiskyImage from '../../assets/images/whisky_480.jpg'
-import ginImage from '../../assets/images/gin_480.jpg'
-import wodkaImage from '../../assets/images/wodka_480.jpg'
+import axios from "axios";
+import LoadingIcon from "../UI/LoadingIcon";
+import LoadingError from "../UI/LoadingError/LoadingError";
 
-const $categories = [
-    {
-        id: 1,
-        name: 'Drinki z whisky',
-        URL: 'drinkizwhisky',
-        backgroundImage: whiskyImage
-    },
-    {
-        id: 2,
-        name: 'Drinki z ginem',
-        URL: 'drinkizginem',
-        backgroundImage: ginImage
-    },
-    {
-        id: 3,
-        name: 'Drinki z wódką',
-        URL: 'drinkizwodka',
-        backgroundImage: wodkaImage
-    },
-    {
-        id: 4,
-        name: 'Inne drinki',
-        URL: 'innedrinki',
-        backgroundImage: wodkaImage
-    }
-]
 
 const Categories = props => {
     
     const {activeCategory} = props;
     
+    const [loading, setLoading] = useState(true);
+    const [loadingError, setLoadingError] = useState(false);
     const [extraClass, setExtraClass] = useState("");
     const [categories, setCategories] = useState([]);
     
-    useEffect(() => {
 
-        setCategories($categories);
+    const fetchCategories = async () => {
+        
+        
+        try {
+            
+            const res = await axios.get('https://drinkit-cc979-default-rtdb.firebaseio.com/kategorie.json')
+            const newCategories = [];
+                
+                for (const item in res.data) {
+                    newCategories.push({...res.data[item]})
+                }
+                
+                setCategories(newCategories);
+                setLoadingError(false);
+                
+    
+            } catch (x) {
+                setLoadingError(true);
+            }
+        setLoading(false);
+
+       
+    }
+    
+    useEffect(() => {
+        
         (activeCategory && setExtraClass("categories__category--small"));
+        fetchCategories();
 
     }, [])
 
@@ -53,7 +54,8 @@ const Categories = props => {
             <div className="container">
                 <h2 className="categories__title"><i className="fas fa-list"></i>Kategorie</h2>
                 <div className="categories__row">
-                    {categoriesLinks}
+                    {(loading && !loadingError) ? <LoadingIcon/> : categoriesLinks}
+                    {loadingError && (<LoadingError />)}
                 </div>
             </div>
         </section>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = props => {
     
-    const {extraClass, withoutButton, withoutSubtitle, title} = props;
+    const {extraClass, withoutButton, withoutSubtitle} = props;
     
     const homeTitle = (
         <>

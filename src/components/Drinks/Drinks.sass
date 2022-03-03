@@ -2,8 +2,10 @@
 
 .drinks
     padding: 6rem 0
-    background-color: #cccccc
     position: relative
+    min-height: 50rem
+
+    
 
     &__title
         font-size: 3rem
@@ -18,12 +20,16 @@
     &__row
         display: flex
         flex-wrap: wrap
-        justify-content: space-between
+        justify-content: center
         width: 100%
 
 @media(min-width: 668px)
     .drinks
         padding: 7rem 0
+
+        &__row
+            justify-content: space-between
+
 
 @media(min-width: 992px)
     .drinks
@@ -34,3 +40,6 @@
 
         &__title
             margin-bottom: 8rem
+
+
+

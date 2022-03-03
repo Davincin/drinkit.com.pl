@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import './Contact.sass'
 import emailjs from '@emailjs/browser'
 import LoadingIcon from '../../components/UI/LoadingIcon'
+import axios from 'axios'
+
 
 const Contact = () => {
     
@@ -50,7 +52,7 @@ const Contact = () => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)
     }
 
-    const submitForm = e => {
+    const submitForm =  e => {
         e.preventDefault();
         
         if (name === '') {
@@ -83,6 +85,7 @@ const Contact = () => {
             setMail('');
             setMessage('');
         }
+
     }
     
     return (

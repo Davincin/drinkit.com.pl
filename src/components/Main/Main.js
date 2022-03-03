@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import './Main.sass'
 
 const Main = (props) => {
 
@@ -7,7 +8,7 @@ const Main = (props) => {
     }, [])
 
     return (
-        <main id="main">
+        <main id="main" className="main">
             {props.children}
         </main>
     );

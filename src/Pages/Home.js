@@ -6,6 +6,11 @@ import { useEffect } from "react";
 
 const Home = () => {
     
+    
+    useEffect(() => {
+        document.title = 'DrinkIt - koktajle, impreza, smak.'
+    }, [])
+
     return (
         <>
             <Header />

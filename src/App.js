@@ -49,7 +49,7 @@ const App = () => {
           <Route path="/drinkizginem" element={<DrinksGin />}/>
           <Route path="/drinkizwodka" element={<DrinksWodka />}/>
           <Route path="/innedrinki" element={<DrinksOther />}/>
-          <Route path="/drink/:drinkname" element={<DrinkPage />}/>
+          <Route path="/drinki/:drinkname" element={<DrinkPage />}/>
           <Route path="/oferta" element={<OfferPage />}/>
           <Route path="/kontakt" element={<ContactPage />}/>
           <Route path="*" element={<NotFoundPage />}/>

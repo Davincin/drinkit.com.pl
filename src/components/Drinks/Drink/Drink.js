@@ -1,46 +1,73 @@
 import './Drink.sass'
 import { Link } from 'react-router-dom'
-import foto from '../../../assets/images/530_640.jpg';
 
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
+import LoadingIcon from '../../UI/LoadingIcon';
+import LoadingError from '../../UI/LoadingError/LoadingError';
+import HomeButton from '../../UI/HomeButton/HomeButton';
 const Drink = props => {
 
-    const drink = {
-        drinkId: 1,
-        drinkName: '530',
-        drinkURL: '530',
-        drinkCategory: "Drinki z ginem",
-        drinkCategoryURL: 'drinkizwhisky',
-        drinkIngredients: ['skladnik1', 'skladnik2', 'skladnik3', 'skladnik4'],
-        drinkPreparation: ['zrobic x y z no i tak dalej'],
-        drinkImg: '../../assets/images/530_640.jpg',
-        drinkDate: "02/02/22"
-    }
+    const navigate = useNavigate()
+    const location = useLocation()
+    const [drink, setDrink] = useState({})
+    const [loading, setLoading] = useState(true)
+    const [loadingError, setLoadingError] = useState(false);
+   
+    const fetchDrink = async () => {
+        try {
+            
+            const res = await axios.get(`https://drinkit-cc979-default-rtdb.firebaseio.com${location.pathname}.json`)
+            
+            if(res.data === null) {
+                setLoadingError(true)
+            } else {
+                setDrink({...res.data})
+            }
 
-    const {shortVersion, drinkName, drinkURL} = props;
-    const ingredients = ["składnik1", "składnik2", "składnik3", "składnik4"].map(el => <li key={el}>{el}</li>);
+         } catch (ex) {
+            setLoadingError(true)
+        }
+        setLoading(false)
+    }
     
+    useEffect(() => {
+        fetchDrink();
+        
+    }, [])
+
+    useEffect(() => {
+        document.title = `${drink.name} - DrinkIt`
+    }, [drink])
+    
+
 
     return (
         <article className="drink">
             <div className="container">
-                <div className="drink__row">
-                    <img src={foto} alt="#" className="drink__img" />
+                {loading && <LoadingIcon/>}
+                {(!loading && !loadingError) && (
+                    <div className="drink__row">
+                    <img src={drink.img} alt="#" className="drink__img" />
                     <div className="drink__info">
-                        <h2 className="drink__title">{drinkName}</h2>
+                        <h2 className="drink__title">{drink.name}</h2>
                         <ul className="drink__ingredients">
                             <h4 className="drink__ingredients-title">Składniki:</h4>
-                            {ingredients}
+                            {drink.ingredients && drink.ingredients.map(el => <li key={el}>{el}</li>)}
                         </ul>
                         <ul className="drink__preparation">
                             <h4 className="drink__preparation-title">Sposób przygotowania:</h4>
-                            <li>Wszystkie składniki wstrząsamy w shakerze z lodem, następnie przelewamy do kieliszka.</li>
+                            {drink.preparation && drink.preparation.map(el => <li key={el}>{el}</li>)}
                         </ul>
                         <div className="drink__footer">
-                            <Link to={`/${drink.drinkCategoryURL}`} className="drink__category-link">{drink.drinkCategory}</Link>
-                            <p className="drink__date">{drink.drinkDate}</p>
+                            <Link to={`/${drink.categoryId}`} className="drink__category-link">{drink.categoryName}</Link>
+                            <p className="drink__date">{drink.date}</p>
                         </div>
                     </div>
                 </div>
+                )}
+                {loadingError && <LoadingError />}
             </div>
         </article>
     );

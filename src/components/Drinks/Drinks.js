@@ -1,85 +1,68 @@
 import DrinkLink from "./DrinkLink/DrinkLink";
 import './Drinks.sass'
+import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import LoadingIcon from "../UI/LoadingIcon";
+import LoadingError from "../UI/LoadingError/LoadingError";
 
-const drinksData = [
-    {
-        drinkId: 1,
-        drinkName: '530',
-        drinkURL: '530',
-        drinkCategory: "Drinki z ginem",
-        drinkCategoryUrl: '/drinkizwhisky',
-        drinkIngredients: ['skladnik1', 'skladnik2', 'skladnik3', 'skladnik4'],
-        drinkPreparation: ['zrobic x y z no i tak dalej'],
-        drinkImg: '../../assets/images/530_640.jpg'
-
-    },
-    {
-        drinkId: 2,
-        drinkName: '530',
-        drinkURL: '530',
-        drinkCategory: "Drinki z ginem",
-        drinkCategoryUrl: '/drinkizwhisky',
-        drinkIngredients: ['skladnik1', 'skladnik2', 'skladnik3', 'skladnik4'],
-        drinkPreparation: ['zrobic x y z no i tak dalej'],
-        drinkImg: '../../assets/images/530_640.jpg'
-
-    },
-    {
-        drinkId: 3,
-        drinkName: '530',
-        drinkURL: '530',
-        drinkCategory: "Drinki z ginem",
-        drinkCategoryUrl: '/drinkizwhisky',
-        drinkIngredients: ['skladnik1', 'skladnik2', 'skladnik3', 'skladnik4'],
-        drinkPreparation: ['zrobic x y z no i tak dalej'],
-        drinkImg: '../../assets/images/530_640.jpg'
-
-    },
-    {
-        drinkId: 4,
-        drinkName: '530',
-        drinkURL: '530',
-        drinkCategory: "Drinki z ginem",
-        drinkCategoryUrl: '/drinkizwhisky',
-        drinkIngredients: ['skladnik1', 'skladnik2', 'skladnik3', 'skladnik4'],
-        drinkPreparation: ['zrobic x y z no i tak dalej'],
-        drinkImg: '../../assets/images/530_640.jpg'
-
-    },
-    {
-        drinkId: 5,
-        drinkName: '530',
-        drinkURL: '530',
-        drinkCategory: "Drinki z ginem",
-        drinkCategoryUrl: '/drinkizwhisky',
-        drinkIngredients: ['skladnik1', 'skladnik2', 'skladnik3', 'skladnik4'],
-        drinkPreparation: ['zrobic x y z no i tak dalej'],
-        drinkImg: '../../assets/images/530_640.jpg'
-
-    },
-    {
-        drinkId: 6,
-        drinkName: '530',
-        drinkURL: '530',
-        drinkCategory: "Drinki z ginem",
-        drinkCategoryUrl: '/drinkizwhisky',
-        drinkIngredients: ['skladnik1', 'skladnik2', 'skladnik3', 'skladnik4'],
-        drinkPreparation: ['zrobic x y z no i tak dalej'],
-        drinkImg: '../../assets/images/530_640.jpg'
-
-    }
-]
 
 const Drinks = props => {
 
-    const drinksToShow = drinksData.map(drink => <DrinkLink key={drink.drinkId} shortVersion {...drink}/>)
+    const location = useLocation();
+    const [drinks, setDrinks] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [loadingError, setLoadingError] = useState(false)
+
+    const fetchDrinks = async () => {
+        
+        
+
+        try {
+            const res = await axios.get('https://drinkit-cc979-default-rtdb.firebaseio.com/drinki.json')
+            const path = location.pathname
+            
+            if(path === '/') {
+                const homeDrinks = [];
+                
+                for (const item in res.data) {
+                    homeDrinks.push({...res.data[item]})
+                }
+                
+                const newDrinks = homeDrinks.slice(0,6)
+                setDrinks([...newDrinks])
+            } else {
+                const newDrinks = []
+
+                for (const item in res.data) {
+                    if (path.includes(res.data[item].categoryId)) {
+                        newDrinks.push({...res.data[item]})
+                    }
+                    setDrinks([...newDrinks])
+               } 
+            }
+        } catch (ex) {
+            setLoadingError(true);
+        }
+
+        setLoading(false)
+    }
+    
+    useEffect(() => {
+        fetchDrinks();
+        
+    }, [])
 
     return (
-        <section className="drinks">
+        <section className="drinks scroll-fix" id="drinks">
             <div className="container">
                 {(!props.withoutTitle) && (<h2 className="drinks__title"><i className="fas fa-glass-martini-alt"></i>Ostatnio dodane</h2>)}
                 <div className="drinks__row">
-                    {drinksToShow}
+                    {loading && <LoadingIcon />}
+                    {(!loading && !loadingError) && (
+                        drinks && drinks.map(drink => <DrinkLink key={drink.id} {...drink}/>)
+                    )}
+                    {loadingError && <LoadingError />}
                 </div>
             </div>
         </section>
